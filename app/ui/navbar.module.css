@@ -1,0 +1,35 @@
+.header {
+  & .mainNav {
+    border: 3px solid green;
+    & .submenuBtn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 24px 0;
+      min-width: 110px;
+      min-height: 26px;
+      & span {
+        margin-right: 10px;
+      }
+    }
+    & .loginRegisterContainer {
+      & button {
+        margin: 0 auto 16px;
+        display: block;
+        width: 100%;
+        height: 42px;
+        &:hover {
+          color: var(--Almost-Black);
+        }
+      }
+    }
+    & .registerBtn {
+      border: 2px solid var(--Medium-Gray);
+      border-radius: 14px;
+      &:hover {
+        border: 2px solid var(--Almost-Black);
+      }
+    }
+    
+  }
+}
