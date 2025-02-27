@@ -1,21 +1,32 @@
-// 'use client';
+'use client';
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Menu1 from '../assets/images/menu-1.jpg'
 import Menu2 from '../assets/images/menu-2.jpg'
 import { FaRegCircleCheck } from "react-icons/fa6"
 import toast from 'react-hot-toast';
-import { getData } from '../utils/db';
 
-export default async function OpcionesMenu() {
+export default function OpcionesMenu() {
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const [data, setData] = useState([
     
-    const data = await getData();
-    console.log(data)
+  ]);
 
+  useEffect(() => {
+    fetch('/api/data')
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('Fetched data:', result); // Log the fetched data
+        setData(result);
+      })
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+    
+  const handleSubmit = e => {
+    e.preventDefault()
+    toast('hola');
+    console.log(data)
     /* NOTE - 
       1. Crear archivo para realizar queries en DB
       2. Crear funcion para que guarde temporalmente las imagenes de las opciones del menu
@@ -33,8 +44,6 @@ export default async function OpcionesMenu() {
         4.3. Si es distinto de ese valor y != 0 UPDATE. toast(`la opción ${opcion} ha sido seleccionada`)
       5. 
     */ 
-    toast('hola');
-
   }
 
   return (
